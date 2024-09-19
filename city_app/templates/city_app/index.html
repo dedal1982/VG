@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вечерний город</title>
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    
+</head>
+<body>
+    
+    <main class="page">
+        <div class="choose">
+            <a href="#" class="logo__link">
+                <img src="{% static 'images/glass1.png' %}" alt="glass">
+            </a>
+            <div class="choose-down d-flex flex-column gap-3" style="max-width: 400px; width: 100%">
+                <a href="/register/" class="btn btn-outline-primary btn-lg btn-register__index">Регистрация</a>
+                <a href="/login/" class="btn btn-outline-secondary btn-lg btn-login__index">Авторизация</a>
+            </div>
+        </div>
+        
+        <div class="popup city__popup">
+            <div class="city__body">
+                <div class="city__wrapper">
+                    <div class="city__close"><img data-close="" src="{% static 'images/close.svg' %}" alt="close"></div>
+                    <div class="custom-select">
+                        <div class="custom-wrapper">
+                            <img class="custom-arrow" src="{% static 'images/arrow.svg' %}" alt="arrow">
+                            <div class="select-selected">Выберите Область</div>
+                        </div>
+                        <div class="select-items select-hide">
+                            <div class="select-item">Челябинск</div>
+                            <div class="select-item">Москва</div>
+                        </div>
+                    </div>
+                    <a href="#" data-button="" class="city__button btn">Подтвердить</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вечерний город</title>
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="page__container page__container-portfolio">
+        <div class="page__industry industry">
+          <ul class="industry__list">
+            <li class="industry__item work">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/work.svg' %}" alt="image" />Работа</a
+              >
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/house.svg' %}" alt="image" />Недвижимость</a
+              >
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/news.svg' %}" alt="image" />Новости</a
+              >
+            </li>
+            <li class="industry__item car">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/car.png' %}" alt="image" />Авто</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page__portfolio portfolio">
+        <h2 class="portfolio__title">Портфолио по разработке сайтов</h2>
+        <a href="{% url 'portfolio' %}" class="banner__back">Назад</a>
+        <div class="portfolio__block example">
+          <div class="example__img">
+            <img src="{% static 'images/sitePage/page01.webp' %}" alt="" />
+          </div>
+          <div class="example__body">
+            <div class="example__description">
+              <h3 class="example__title">Как велась работа?</h3>
+              <ul class="example__list">
+                <li>
+                  Детальный анализ исходного сайта, чтобы понять структуру,
+                  используемые технологии и ключевые элементы дизайна
+                </li>
+                <li>
+                  Воссоздание интерфейса с точным соответствием оригиналу,
+                  обеспечив адаптивность и кроссбраузерную совместимость
+                </li>
+                <li>
+                  Оптимизация сайта для быстрой загрузки, применив сжатие
+                  изображений и минимизацию кода.
+                </li>
+                <li>
+                  Реализован весь функционал, включая динамические элементы, для
+                  безупречной работы сайта
+                </li>
+                <li>Передача рабочего сайта в ваши руки.</li>
+              </ul>
+            </div>
+            <div class="example__like">
+              <h3 class="example__title">
+                Понравилось?
+                <br />
+                Закажите подобное решение
+              </h3>
+              <a href="#" class="example__link">Написать нам</a>
+            </div>
+          </div>
+        </div>
+        <div class="example__code">
+          <img src="{% static 'images/sitePage/code01.png' %}" alt="" />
+        </div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/city.js' %}"></script>
+  </body>
+</html>

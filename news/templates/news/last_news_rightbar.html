@@ -1,0 +1,18 @@
+<div class="pb-3">
+    <div class="bg-light py-2 px-4 mb-3">
+        <h3 class="m-0">Последние</h3>
+    </div>
+    {% for article in last_news %}
+        <div class="d-flex mb-3">
+            <img src="{{ article.photo.url }}" style="width: 100px; height: 100px; object-fit: cover;">
+            <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                <div class="mb-1" style="font-size: 13px;">
+                    <a href="{% url "category_detail" article.category.slug %}">{{ article.category.name }}</a>
+                    <span class="px-1">/</span>
+                    <span>{{ article.published_date|date:"F d, Y" }}</span>
+                </div>
+                <a class="h6 m-0" href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:40 }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

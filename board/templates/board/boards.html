@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Объявление</title>
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/ads.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="page__container page__container-portfolio">
+        <div class="page__industry industry">
+          <ul class="industry__list">
+            <li class="industry__item work">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/work.svg' %}" alt="" />Работа</a>
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/house.svg' %}" alt="" />Недвижимость</a>
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/news.svg' %}" alt="" />Новости</a>
+            </li>
+            <li class="industry__item car">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/car.png' %}" alt="" />Авто</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ads">
+        <!--Поиск-->
+          
+        <form method="get">
+          <div class="search" style="display: flex;justify-content:space-between;padding-left:20px;">
+            <input type="search" style="width: 100%;"  name="search"/>
+            <button>
+              <img class="search__img" src="{% static 'images/search.png' %}" alt="поиск" />
+            </button>
+          </div>
+          <div class="select-item" >
+            <!--категория-->
+            <div class="select-wrapper">
+              <label for="category-select">Категория:</label>
+              <select name="category" id="category-select">
+                <option value="">Выберите категорию</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <!--состояние-->
+            <div class="select-wrapper">
+              <label for="condition-select">Состояние:</label>
+              <select name="condition" id="condition-select">
+                <option value="">Выберите состояние</option>
+                <option value="used">Б/У</option>
+                <option value="new">Новый</option>
+              </select>
+            </div>
+            <!--цена-->
+            <div class="price-range">
+              <label for="price-from">Цена:</label>
+              <div class="price-item">
+                <input type="number" id="price-from" name="price-from" placeholder="От" />
+                <input type="number" id="price-to" name="price-to" placeholder="До" />
+              </div>
+            </div>
+          </div>
+          <button class="select-apply" style="height: min-content;">применить</button>
+        </form>
+        <div class="ads__wrapper"  style="margin-bottom: 50px;">
+          <!--карточка обЪявления-->
+          {% for item in listings %}
+          <div class="card" style="margin-top: 25px">
+            <div class="image-container">
+              <img src="{{ item.images.first.image.url }}" alt="Item Image" />
+            </div>
+            <div class="content-container">
+              <div class="price">{{ item.price }} ₽</div>
+              <h3 class="name">{{ item.title  }}</h3>
+              <div class="category">Категория - {{ item.category.name }}</div>
+              <div class="address">Адрес - {{ item.address }}</div>
+              <div class="posted-time">{{ item.created_at|date }}</div>
+              <div class="condition">Состояние - {% if item.condition == "new" %} Новый {% else %} Б/У {% endif %}</div>
+              <div class="description">
+                {{ item.description|truncatechars:100 }}
+              </div>
+              <a style="margin-top: 50px;" href="{{ item.get_absolute_url }}" class="btn">перейти</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/city.js' %}"></script>
+  </body>
+</html>

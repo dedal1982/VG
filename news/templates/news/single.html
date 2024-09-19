@@ -1,0 +1,254 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% load load_last_news %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+
+{% block content %}
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- News Detail Start -->
+                    <div class="position-relative mb-3">
+                        <img class="img-fluid w-100" src="{{ post.photo.url }}" style="object-fit: cover;">
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-3">
+                                <a href="">{{  post.category.name }}</a>
+                                <span class="px-1">/</span>
+                                <span>{{ post.published_date|date:"F d, Y" }}</span>
+                            </div>
+                            <div>
+                                <h1 class="h2">{{ post.title }}</h1>
+                                <h4 class="h5 mt-2"><b>{{ post.subcontent }}</b></h4>
+                               {{ post.content|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Detail End -->
+
+                    <!-- Comment List Start -->
+                    <div id="comment-block" class="bg-light mb-3" style="padding: 30px;">
+                        <h3 class="mb-4">{{ comments|length }} Comments</h3>
+                        {% for comment in comments %}
+                            {% if not comment.parent %}
+                            <div class="media mb-4">
+                                <img src="{% static 'images/profile.png' %}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <div id="comment-block{{ comment.id }}" class="media-body">
+                                    <h6><a href="">{{ comment.user.username }}</a> <small><i>{{ comment.created_date|date:"F d, Y" }}</i></small></h6>
+                                    <p>{{ comment.content }}</p>
+                                    <a href="#create-comment" data-comment-id="{{ comment.id }}" onclick="replyComment(this)" class="btn btn-sm btn-outline-secondary">Reply</a>
+                                    {% for replied_comment in comment.replied_comments.all %}
+                                    <div class="media mt-4">
+                                        <img src="{% static 'images/profile.png' %}" alt="Image" class="img-fluid mr-3 mt-1"
+                                            style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6><a href="">{{ replied_comment.user.username }}</a> <small><i>{{ replied_comment.created_date|date:"F d, Y" }}</i></small></h6>
+                                            <p>{{ replied_comment.content }}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- Comment List End -->
+
+                    <!-- Comment Form Start -->
+                    <div id="create-comment" class="bg-light mb-3" style="padding: 30px;">
+                        <h3 class="mb-4">Leave a comment</h3>
+                        <form name="comment-form">
+                            <input type="hidden" value="{{ request.user.username }}" id="currentUser">
+                            <input type="hidden" id="commentId">
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group mb-0">
+                                {% if request.user.is_authenticated %}
+                                <button type="submit"  class="btn btn-primary font-weight-semi-bold py-2 px-3">Leave a comment</button>
+                                {% else %}
+                                    <a class="btn btn-primary font-weight-semi-bold py-2 px-3" href="{% url "login" %}">Авторизация</a>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Comment Form End -->
+                </div>
+
+                <div class="col-lg-4 pt-3 pt-lg-0 mt-4">
+                    <!-- Social Follow Start -->
+                    <!-- <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Follow Us</h3>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #39569E;">
+                                <small class="fab fa-facebook-f mr-2"></small><small>12,345 Fans</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #52AAF4;">
+                                <small class="fab fa-twitter mr-2"></small><small>12,345 Followers</small>
+                            </a>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #0185AE;">
+                                <small class="fab fa-linkedin-in mr-2"></small><small>12,345 Connects</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #C8359D;">
+                                <small class="fab fa-instagram mr-2"></small><small>12,345 Followers</small>
+                            </a>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #DC472E;">
+                                <small class="fab fa-youtube mr-2"></small><small>12,345 Subscribers</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #1AB7EA;">
+                                <small class="fab fa-vimeo-v mr-2"></small><small>12,345 Followers</small>
+                            </a>
+                        </div>
+                    </div> -->
+                    <!-- Social Follow End -->
+
+                    <!-- Newsletter Start -->
+                    <!-- <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Newsletter</h3>
+                        </div>
+                        <div class="bg-light text-center p-4 mb-3">
+                            <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" class="form-control form-control-lg" placeholder="Your Email">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </div>
+                            <small>Sit eirmod nonumy kasd eirmod</small>
+                        </div>
+                    </div> -->
+                    <!-- Newsletter End -->
+
+                    <!-- Ads Start -->
+                    <!-- <div class="mb-3 pb-3">
+                        <a href=""><img class="img-fluid" src="img/news-500x280-4.jpg" alt=""></a>
+                    </div> -->
+                    <!-- Ads End -->
+
+                    <!-- Popular News Start -->
+                    {% if similar_posts|length > 0 %}
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Рекомендуем</h3>
+                        </div>
+                        {% for news in similar_posts %}
+                        <div class="d-flex mb-3">
+                            <img src="{{ news.photo.url }}" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                                <div class="mb-1" style="font-size: 13px;">
+                                    <a href="">{{ news.category.name }}</a>
+                                    <span class="px-1">/</span>
+                                    <span>{{ news.published_date|date:"F d, Y" }}</span>
+                                </div>
+                                <a class="h6 m-0" href="{{ news.get_absolute_url }}">{{ news.title|truncatechars:30 }}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <!-- Popular News End -->
+
+                    <!-- Last news Start -->
+                    {% load_most_news %}
+                    <!-- Last news End -->
+
+                    <!-- Tags Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Теги</h3>
+                        </div>
+                        <div class="d-flex flex-wrap m-n1">
+                            {% for tag in tags %}  
+                            <a href="" class="btn btn-sm btn-outline-secondary m-1">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- News With Sidebar End -->
+    <script>
+        let defaultCommentBlock = "comment-block"
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            const months = [
+                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+            ];
+            const month = months[date.getMonth()]; // Название месяца
+            const day = String(date.getDate()).padStart(2, '0'); // День с ведущим нулем
+            const year = date.getFullYear(); // Год
+            return `${month} ${day}, ${year}`
+        }
+        
+        function replyComment (e) {
+            const commentId = e.getAttribute("data-comment-id")
+            defaultCommentBlock = `comment-block${commentId}`
+            document.getElementById("commentId").value = commentId
+            window.setTimeout(() => document.getElementById("message").focus(), 40);
+            console.log(defaultCommentBlock)
+        }
+    
+        const addComment = (text, cb) => {
+            const parentId = document.getElementById("commentId").value
+            const commentData = {
+                content: text,
+                parent_id: parentId ? parseInt(parentId) : null,
+                article_id: parseInt("{{ post.id }}")
+            }
+            fetch("{% url 'add_comment' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(commentData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const username = document.getElementById("currentUser").value
+                document.getElementById(defaultCommentBlock).insertAdjacentHTML("beforeend", `<div  class="media ${data.parent ? "mt-4" : "mb-4" }">
+                                    <img src="/static/images/profile.png" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <div ${!data.parent ? `id="comment-block${ data.id }"` : "" } class="media-body">
+                                        <h6><a href="">${ username }</a>${" "}<small><i>${ formatDate(data.created_date) }</i></small></h6>
+                                        <p>${ data.content }</p>
+                                        ${!data.parent ? `<a href="#create-comment" data-comment-id="${data.id}" onclick="replyComment(this)" class="btn btn-sm btn-outline-secondary">Reply</a>`: ""}
+                                    </div>
+                                </div>`)
+                defaultCommentBlock = "comment-block"
+                document.getElementById("commentId").value = ""
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        
+        const form = document.forms["comment-form"]
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const content = form.message.value
+            if (!content.length) {
+                alert("Запольните, пожалуйста!")
+            } else {
+                addComment(content)
+                form.reset()
+            }
+            
+        })
+        console.log("{{ post.published_date|date:'F d, Y' }}")
+    </script>
+    {% endblock %}

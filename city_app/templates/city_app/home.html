@@ -1,0 +1,178 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вечерний город</title>
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <!-- <div class="page__bg">
+            <img src="images/background.jpg" alt="">
+        </div> -->
+      <div class="page__container">
+        <div class="page__industry industry">
+          <ul class="industry__list">
+            <li class="industry__item work">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/work.svg' %}" alt="" />Работа</a
+              >
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/house.svg' %}" alt="" />Недвижимость</a
+              >
+            </li>
+            <li class="industry__item house">
+              <a href="{% url 'news_home' %}" class="industry__link">
+                <img src="{% static 'images/news.svg' %}" alt="" />Новости</a
+              >
+            </li>
+            <li class="industry__item car">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/car.png' %}" alt="" />Авто</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="page__categories categories">
+          <div class="categories__logo">
+            <span>Вечерний</span>
+            <div class="categories__city"></div>
+          </div>
+          <a href="#" class="categories__button">
+            <span>видеогид</span>
+            по местам отдыха
+          </a>
+        </div>
+        <ul class="categories__list">
+          <li class="categories__item">
+            <a href="catalog/banner1.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/01.png' %}" alt="icon" />
+              </div>
+              Еда / Доставка
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner2.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/02.png' %}" alt="icon" />
+              </div>
+              Товары
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="{% url 'portfolio' %}" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/03.png' %}" alt="icon" />
+              </div>
+              Услуги
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner4.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/04.png' %}" alt="icon" />
+              </div>
+              Красота
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner5.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/05.png' %}" alt="icon" />
+              </div>
+              Здоровье
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner6.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/06.png' %}" alt="icon" />
+              </div>
+              Спорт
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner7.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/07.png' %}" alt="icon" />
+              </div>
+              Развлечения
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner8.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/08.png' %}" alt="icon" />
+              </div>
+              Праздники
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner9.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/09.png' %}" alt="icon" />
+              </div>
+              Культура/Кино
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner10.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/10.png' %}" alt="icon" />
+              </div>
+              Авто / Мото
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner11.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/11.png' %}" alt="icon" />
+              </div>
+              Недвижимость
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner12.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/12.png' %}" alt="icon" />
+              </div>
+              Финансы
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner13.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/13.png' %}" alt="icon" />
+              </div>
+              Обучение
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner14.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/14.png' %}" alt="icon" />
+              </div>
+              Гостиницы
+            </a>
+          </li>
+          <li class="categories__item">
+            <a href="catalog/banner15.html" class="categories__link">
+              <div class="categories__image">
+                <img src="{% static 'images/categories/15.png' %}" alt="icon" />
+              </div>
+              Туризм
+            </a>
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <script src="{% static 'js/city.js' %}"></script>
+  </body>
+</html>

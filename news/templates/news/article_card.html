@@ -1,0 +1,12 @@
+<div class="position-relative mb-3">
+    <img class="img-fluid w-100" src="{{ article.photo.url }}" style="object-fit: cover; height: 200px">
+    <div class="overlay position-relative bg-light">
+        <div class="mb-2" style="font-size: 14px;">
+            <a href="">{{ article.category.name }}</a>
+            <span class="px-1">/</span>
+            <span>{{ article.published_date|date:"F d, Y" }}</span>
+        </div>
+        <a class="h4" href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:30 }}...</a>
+        <p class="m-0">{{ article.subcontent|truncatewords:80 }}...</p>
+    </div>
+</div>

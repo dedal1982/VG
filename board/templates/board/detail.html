@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/ads.css' %}" />
+    <title>Объявление</title>
+  </head>
+  <body>
+    <main class="page">
+      <div class="page__container page__container-portfolio">
+        <div class="page__industry industry">
+          <ul class="industry__list">
+            <li class="industry__item work">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/work.svg' %}" alt="" />Работа</a>
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/house.svg' %}" alt="" />Недвижимость</a>
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/news.svg' %}" alt="" />Новости</a>
+            </li>
+            <li class="industry__item car">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/car.png' %}" alt="" />Авто</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="ads-full">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {% for image in listing.images.all %}
+            <div class="swiper-slide">
+              <img style="object-fit: contain;" src="{{ image.image.url }}" alt="" />
+            </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <h2 class="ads-full__title">{{ listing.title }}</h2>
+        <div class="ads-full__date">
+          Дата публикации: <span>{{ listing.created_at|date }}</span>
+        </div>
+        <div class="ads-full__date">
+          Цена: <span> {{ listing.price }}</span>
+        </div>
+        <div class="ads-full__date">
+          Аддресс: <span>{{ listing.address }}</span>
+        </div>
+        <div class="ads-full__desc">
+        {{ listing.description|safe }}
+        </div>
+        <div class="ads-full__contact">
+          Контакты:
+          Телефон: <span>+7 999 999 99 99</span>
+          Email: <span>dustinjustin@gmail.com</span>
+        </div>
+        <form method="post" class="ads-full__form">
+          {{ form.as_p }}
+          {% csrf_token %}
+          {% if request.user.is_authenticated %}
+          <button class="ads-full__btn">отправить</button>
+          {% else %}
+          <a href="{% url 'login' %}" class="ads-full__btn" style="text-align:center; align-content: center">Авторизация</a>
+          {% endif %}
+        </form>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+    <script src="{% static 'js/city.js' %}"></script>
+  </body>
+</html>

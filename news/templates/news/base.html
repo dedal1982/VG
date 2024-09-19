@@ -1,0 +1,90 @@
+{% load static %}
+{% load load_categories %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %}</title>
+  <link href="{% static 'css/news.style.min.css' %}" rel="stylesheet"></link>
+  <link href="{% static 'js/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/ckeditor.css' %}">
+</head>
+<body>
+  <!-- Navbar Start -->
+  <div class="container p-0 mb-3">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-2 px-lg-5">
+        <a href="/news/" class="navbar-brand d-block">
+            <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">Новости</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3 text-wite" id="navbarCollapse">
+            <form class="ml-auto" action="{% url 'news_search' %}">
+                <div class="input-group " style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control" placeholder="Keyword" name="s">
+                    <div class="input-group-append">
+                        <button class="input-group-text text-secondary"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+  {% block content %} {% endblock %}
+  <div class="container bg-light pt-5 px-sm-3 px-md-5">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-5">
+            <a href="/" class="navbar-brand">
+                <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">Новости</span></h1>
+            </a>
+            <p>Все права защищены. Оставайтесь в курсе событий с нами!</p>
+            <div class="d-flex justify-content-start mt-4">
+                <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-outline-secondary text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-5">
+            <h4 class="font-weight-bold mb-4">Категории</h4>
+            <div class="d-flex flex-wrap m-n1">
+                {% get_categories as categories %}
+                {% for category in categories %}
+                    <a href="#" class="btn btn-sm btn-outline-secondary m-1">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-5">
+            <h4 class="font-weight-bold mb-4">Быстрые ссылки</h4>
+            <div class="d-flex flex-column justify-content-start">
+                <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>About</a>
+                <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Advertise</a>
+                <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Privacy & policy</a>
+                <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Terms & conditions</a>
+                <a class="text-secondary" href="#"><i class="fa fa-angle-right text-dark mr-2"></i>Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4 px-sm-3 px-md-5">
+    <p class="m-0 text-center">
+        &copy; <a class="font-weight-bold" href="http://vecherniygorod.ru">vecherniygorod.ru</a>. Все права зашишены. 
+    </p>
+</div>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap-4.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'js/easing/easing.min.js' %}"></script>
+    <script src="{% static 'js/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery_news_main.js' %}"></script>
+</body>
+</html>
+

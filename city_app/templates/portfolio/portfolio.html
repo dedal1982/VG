@@ -1,0 +1,187 @@
+
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вечерний город</title>
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="page__container page__container-portfolio">
+        <div class="page__industry industry">
+          <ul class="industry__list">
+            <li class="industry__item work">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/work.svg' %}" alt="Работа" />Работа</a
+              >
+            </li>
+            <li class="industry__item house">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/house.svg' %}" alt="Недвижимость" />Недвижимость</a
+              >
+            </li>
+            <li class="industry__item news">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/news.svg' %}" alt="Новости" />Новости</a
+              >
+            </li>
+            <li class="industry__item car">
+              <a href="#" class="industry__link">
+                <img src="{% static 'images/car.png' %}" alt="Авто" />Авто</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page__portfolio portfolio">
+        <h2 class="portfolio__title">Портфолио по разработке сайтов</h2>
+        <a href="/catalog/" class="banner__back">Назад</a>
+        <div class="portfolio__text">
+          Примеры сайтов, которые разработала наша команда, смотрите в
+          портфолио. Занимаемся веб-разработкой более 3 лет, создали 300+
+          сайтов. Специализируемся на проектах для малого и среднего бизнеса,
+          b2b, производителей и поставщиков.
+        </div>
+        <div class="portfolio__action">
+          <ul class="portfolio__list">
+            <li class="portfolio__item active">РАЗРАБОТКА САЙТА</li>
+            <li class="portfolio__item">РАЗРАБОТКА EMAIL-ПИСЕМ</li>
+            <li class="portfolio__item">РАЗРАБОТКА КОПИИ САЙТА</li>
+          </ul>
+          <form action="#" class="portfolio__form">
+            <div class="portfolio__select-wrap">
+              <select name="type" id="type" class="portfolio__select">
+                <option value="all" selected="selected">Все типы</option>
+                <option value="korporativnye-sajty">Корпоративные сайты</option>
+                <option value="landing-page">Laning page</option>
+                <option value="internet-magaziny">Интернет-магазины</option>
+                <option value="sajty-vizitki">Сайты-визитки</option>
+                <option value="sajty-s-katalogom">Сайты с каталогом</option>
+                <option value="gossayty">Сайты госвласти</option>
+              </select>
+              <select name="category" id="category" class="portfolio__select">
+                <option value="all" selected="selected">Все категории</option>
+                <option value="avtomobilnaya-otrasl-logistika">
+                  Автомобильная отрасль, логистика
+                </option>
+                <option value="bytovye-tovary-elektronika">
+                  Бытовые товары, электроника
+                </option>
+                <option value="bytovye-uslugi-dlya-naseleniya">
+                  Бытовые услуги для населения
+                </option>
+                <option value="gazony-landshaft">
+                  Газоны, цветы, ландшафтные бюро
+                </option>
+                <option value="prezentacii-dlya-kompanij">
+                  Графика и презентации
+                </option>
+                <option value="informacionnye-tehnologii">
+                  Информационные технологии
+                </option>
+                <option value="kafe-restorany-nochnye-kluby">
+                  Кафе, рестораны, ночные клубы
+                </option>
+                <option value="kultura-iskusstvo-media">
+                  Мероприятия, фестивали, конференции
+                </option>
+                <option value="mebel-predmety-interera">
+                  Мебель, предметы интерьера
+                </option>
+                <option value="medicina-kosmetika">
+                  Косметика, красота и здоровье
+                </option>
+                <option value="medicinskie-centry">Медицина</option>
+                <option value="nedvizhimost-i-gostinicy">
+                  Недвижимость и гостиницы
+                </option>
+                <option value="neftegazovaya-otrasl">
+                  Нефтегазовая отрасль
+                </option>
+                <option value="obrazovatelnye-uslugi">
+                  Образовательные услуги
+                </option>
+                <option value="odezhda-obuv-aksessuary">
+                  Одежда, обувь, аксессуары
+                </option>
+                <option value="okonnye-kompanii">Оконные компании</option>
+                <option value="organy-vlasti-zhkh-uchrezhdeniya">
+                  Органы власти, ЖКХ, учреждения
+                </option>
+                <option value="prodazha-oborudovaniya-tehniki-materialov">
+                  Продажа оборудования, техники, материалов
+                </option>
+                <option value="produkty-pitaniya-kulinariya">
+                  Продукты питания, кулинария
+                </option>
+                <option value="promyshlennost-proizvodstvo">
+                  Промышленность, производство
+                </option>
+                <option value="reklamnye-uslugi-poligrafiya">
+                  Рекламные услуги, полиграфия
+                </option>
+                <option value="remont-proektirovanie">
+                  Ремонт, проектирование
+                </option>
+                <option value="sajty-dlya-stroitelnyh-kompanij">
+                  Сайты для строительных компаний
+                </option>
+                <option value="sajty-po-prodazhe-metalla">
+                  Сайты по продаже металла
+                </option>
+                <option value="stomatologicheskie-uslugi">
+                  Стоматологические услуги и медклиники
+                </option>
+                <option value="strojmaterialy">Стройматериалы</option>
+                <option value="tovary-i-uslugi-dlya-detej">
+                  Товары и услуги для детей
+                </option>
+                <option value="turizm-otdyh-i-razvlecheniya">Туризм</option>
+                <option value="uslugi-dlya-biznesa">Услуги для бизнеса</option>
+                <option value="hobbi-razvlecheniya">
+                  Хобби, развлечения, сувениры
+                </option>
+                <option value="primer-sajty-na-tilda">Сайты на Tilda</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="portfolio__wrapper">
+          <h3 class="portfolio__sub-title">Портфолио сайтов</h3>
+          <div class="portfolio__body">
+            <div class="portfolio__column">
+              <a href="{% url 'portfolio2' %}" class="portfolio__image">
+                <img src="{% static 'images/portfolio/portfoli01.jpg' %}" alt="cite" />
+                <div class="portfolio__refer">Перейти</div>
+              </a>
+            </div>
+            <div class="portfolio__column">
+              <a href="{% url 'portfolio1' %}" class="portfolio__image">
+                <img src="{% static 'images/portfolio/portfoli02.jpg' %}" alt="cite" />
+                <div class="portfolio__refer">Перейти</div>
+              </a>
+            </div>
+            <div class="portfolio__column">
+              <a href="{% url 'portfolio2' %}" class="portfolio__image">
+                <img src="{% static 'images/portfolio/portfoli01.jpg' %}" alt="cite" />
+                <div class="portfolio__refer">Перейти</div>
+              </a>
+            </div>
+            <div class="portfolio__column">
+              <a href="{% url 'portfolio1' %}" class="portfolio__image">
+                <img src="{% static 'images/portfolio/portfoli02.jpg' %}" alt="cite" />
+                <div class="portfolio__refer">Перейти</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="{% static 'js/city.js' %}"></script>
+  </body>
+</html>
